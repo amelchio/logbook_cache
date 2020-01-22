@@ -114,20 +114,25 @@ class MonkeyClass:
     @callback
     def async_refresh_cache(self, now=None):
         def refresh():
+            start = self.cache_start()
+
             with self.load_lock:
-                start = self.cache_start()
                 _LOGGER.debug(f"Purging until {start}")
                 for key in list(self.cache.keys()):
                     if key < start:
                         _LOGGER.debug(f"Removing {key}")
                         del self.cache[key]
 
+            _LOGGER.debug(f"Caching from {start}")
+            refresh = []
             timestamp = start
-            _LOGGER.debug(f"Caching from {timestamp}")
             while step_timestamp(timestamp) < dt_util.utcnow():
+                refresh.append(timestamp)
+                timestamp = step_timestamp(timestamp)
+
+            for timestamp in reversed(refresh):
                 with self.load_lock:
                     self.load_chunk(timestamp)
-                timestamp = step_timestamp(timestamp)
 
         current_timestamp = dt_util.as_utc(dt_util.start_of_local_day())
         while step_timestamp(current_timestamp) < dt_util.utcnow():
