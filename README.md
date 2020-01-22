@@ -2,9 +2,13 @@
 
 Custom component to speed up Home Assistant logbook viewing.
 
-It works by keeping filtered results preloaded and updated in memory.
+This works by keeping filtered results preloaded and updated in memory. The
+effect is most significant with slow hardware such as Raspberry Pi.
 
-This only affects the logbook, not any history view.
+Caveats:
+- the cache takes some time (maybe several minutes) to warm up after each restart
+- watch the memory usage if you have a huge log
+
 
 ## Installation
 
@@ -12,23 +16,15 @@ This only affects the logbook, not any history view.
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 
+For now, you first need to add this URL (`https://github.com/amelchio/logbook_cache`) as a custom repository in HACS settings.
+
+
 ## Configuration
 
-The custom component must be enabled in `configuration.yaml`:
+Enable via the Integrations page, search for "Logbook Cache".
 
-```yaml
-logbook_cache:
-```
+Once enabled, you can select "Logbook Cache" and use the cogwheel to set the number of days to cache.
 
-By default, two days (always the current day and the day before) of logbook entries are kept. Cache filling starts two minutes after startup and will by default load two days.
-
-```yaml
-logbook_cache:
-  preload_days: 2
-  preload_delay:
-    minutes: 2
-  keep_days: 2
-```
 
 ## Donations
 
