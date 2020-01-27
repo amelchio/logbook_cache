@@ -143,7 +143,7 @@ class MonkeyClass:
             self.async_refresh_cache, step_timestamp(current_timestamp)
         )
 
-        self.hass.async_add_job(refresh)
+        self.hass.async_add_executor_job(refresh)
 
     def load_chunk(self, timestamp):
         if timestamp in self.cache:
