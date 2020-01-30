@@ -22,7 +22,7 @@ Logbook Cache is available as an Integration from [HACS](https://github.com/cust
 
 Enable via the Integrations page, search for "Logbook Cache".
 
-Once enabled, you can select "Logbook Cache" and use the cogwheel to set the number of days to cache.
+Once enabled, you can select "Logbook Cache" and use the cogwheel to change settings such as the number of days to cache.
 
 
 ## Support
