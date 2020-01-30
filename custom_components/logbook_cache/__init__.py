@@ -4,7 +4,9 @@ import threading
 import datetime
 import logging
 
+from homeassistant import config as conf_util
 from homeassistant.core import callback
+from homeassistant.loader import async_get_integration
 import homeassistant.components.logbook as lb
 import homeassistant.util.dt as dt_util
 
@@ -24,6 +26,11 @@ logbook_config = None
 
 async def async_setup(hass, config):
     global logbook_config
+
+    logbook_integration = await async_get_integration(hass, lb.DOMAIN)
+    config = await conf_util.async_process_component_config(
+        hass, config, logbook_integration
+    )
     logbook_config = config.get(lb.DOMAIN, {})
 
     return True
