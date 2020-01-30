@@ -87,12 +87,10 @@ class MonkeyClass:
 
         self.async_refresh_cache()
 
-    def wrap_get_events(self, hass, logbook_config, start_day, end_day, entity_id=None):
+    def wrap_get_events(self, hass, config, start_day, end_day, entity_id=None):
         if entity_id is not None or end_day <= self.cache_start():
             _LOGGER.debug(f"Forwarding for {start_day}-{end_day}")
-            return self.original_get_events(
-                hass, logbook_config, start_day, end_day, entity_id
-            )
+            return self.original_get_events(hass, config, start_day, end_day, entity_id)
 
         events = []
 
