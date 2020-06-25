@@ -7,6 +7,7 @@ This works by keeping filtered results preloaded and updated in memory. The effe
 Caveats:
 - the cache takes some time (maybe several minutes) to warm up after each restart
 - watch the memory usage if you have a huge log
+- requested time ranges will be extended to align with a quarter of an hour
 
 
 ## Installation
