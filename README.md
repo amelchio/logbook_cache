@@ -12,12 +12,7 @@ Caveats:
 
 ## Installation
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-
-Logbook Cache is available as an Integration from [HACS](https://github.com/custom-components/hacs).
-
-**Please install with HACS, manual installs are self-supported**
-
+Recent versions of Home Assistant have a much faster logbook so this custom component is no longer useful and has been removed from HACS.
 
 ## Configuration
 
